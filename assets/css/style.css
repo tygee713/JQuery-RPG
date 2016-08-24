@@ -11,7 +11,7 @@ body {
 	text-align: center;
 	/*line-height: 80px;*/
 	font-size: 30px;
-	color: white;
+	color: #FFFB7F;
 	font-family: 'SSF4_ABUKET';
 }
 /* General styling for containers */
@@ -78,7 +78,6 @@ button {
 .row {
 	/*border: 1px solid white;*/
 }
-
 
 .health {
 	position:absolute;
