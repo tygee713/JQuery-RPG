@@ -9,14 +9,16 @@ body {
 	/*border: 5px solid black;*/
 	height: 100%;
 	text-align: center;
-	line-height: 80px;
+	/*line-height: 80px;*/
 	font-size: 30px;
 	color: white;
 	font-family: 'SSF4_ABUKET';
 }
+/* General styling for containers */
+
 #first {
-	height: 100px;
-	margin: 10px 20px;
+	height: 80px;
+	margin: 20px 20px 0px 20px;
 }
 #second {
 	height: 200px;
@@ -26,7 +28,9 @@ body {
 	height: 40px;
 	margin-top: 80px;
 }
-
+#names {
+	height: 50px;
+}
 #attack {
 	text-align: center;
 	height: 100%;
@@ -36,19 +40,13 @@ body {
 }
 #newGame {
 	text-align: center;
-	height: 100%;
-}
-.newGame {
-	/*visibility: hidden;*/
+	/*height: 100%;*/
 }
 #third {
 	height: 150px;
-	margin: 60px 30px 0px 30px;
+	margin: 100px 30px 50px 30px;
 }
-#fourth {
-	height: 40px;
-	margin-bottom: 100px;
-}
+
 #playerCharSelection .col-md-3 {
 	height: 200px;
 	padding: 0px;
@@ -85,7 +83,8 @@ button {
 .health {
 	position:absolute;
 	font-family: "Avenir";
-	bottom: -55px;
+	bottom: -70px;
     left: 50px;
     color: white;
+    line-height:30px;
 }

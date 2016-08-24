@@ -17,12 +17,24 @@
 			</div>
 		</div>
 
+		<div class = "row" id = "names">
+			<div class = "col-md-3">
+			</div>
+			<div class = "col-md-2 cont" id="playerName"></div>
+			<div class = "col-md-2">
+			</div>
+			<div class = "col-md-2 cont" id="enemyName"></div>
+			<div class = "col-md-3">
+			</div>
+
+		</div>
+
 		<div class = "row" id = "second">
 			<div class = "col-md-3">
 			</div>
 			<div hidden class = "col-md-2 cont" id="playerCharArea">
 				<!-- Empty and hidden until player character is selected -->
-				<div class = "health" id = "playerHealth">HP: </div>
+				<div class = "health" id = "playerHealth"></div>
 			</div>
 			<div class = "col-md-2">
 				<div class = "row" id = "sub">
@@ -38,7 +50,7 @@
 			</div>
 			<div hidden class = "col-md-2 cont" id="enemyCharArea">
 				<!-- Empty and hidden until enemy character is selected -->
-				<div class = "health" id = "enemyHealth">HP: </div>
+				<div class = "health" id = "enemyHealth"></div>
 			</div>
 			<div class = "col-md-3">
 			</div>
@@ -62,7 +74,8 @@
 				</div>
 
 			</div>
-			<div class = "col-md-2">
+			<div class = "col-md-2" id="newGame">
+				<button class = "btn btn-default newGame">New Game</button>
 			</div>
 			<div class = "col-md-5 cont">
 				<div class = "row" id = "enemyCharSelection">
@@ -72,19 +85,6 @@
 				</div>
 			</div>
 		</div>
-
-		<div class = "row" id = "fourth">
-			<div class = "col-md-5">
-			</div>
-			<div class = "col-md-2" id = "newGame">
-				<button class = "btn btn-default newGame">New Game</button>
-			</div>
-			<div class = "col-md-5">
-			</div>
-		</div>
-
-
-
 
 		<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 		<script type="text/javascript" src="assets/javascript/game.js"></script>
