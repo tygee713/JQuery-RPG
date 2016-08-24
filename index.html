@@ -9,37 +9,36 @@
 
 	<body>
 		<div class = "row" id = "first">
-			<div class = "col-md-4 cont">
-				Player 1 Wins!
-			</div>
 			<div class = "col-md-4">
 			</div>
-			<div class = "col-md-4 cont">
-				CPU Wins!
+			<div class = "col-md-4 cont" id = "result">
+			</div>
+			<div class = "col-md-4">
 			</div>
 		</div>
 
 		<div class = "row" id = "second">
 			<div class = "col-md-3">
 			</div>
-			<div class = "col-md-2 cont" id="playerCharArea">
-				<!-- Empty until player character is selected -->
-				<div class = "health">HP: </div>
+			<div hidden class = "col-md-2 cont" id="playerCharArea">
+				<!-- Empty and hidden until player character is selected -->
+				<div class = "health" id = "playerHealth">HP: </div>
 			</div>
 			<div class = "col-md-2">
 				<div class = "row" id = "sub">
 					<div class = "col-md-3">
 					</div>
-					<div class = "col-md-6" id = "attack">
+					<div hidden class = "col-md-6" id = "attack">
 						<button class = "btn btn-default attack">Attack</button>
+						<!-- Starts hidden -->
 					</div>
 					<div class = "col-md-3">
 					</div>
 				</div>
 			</div>
-			<div class = "col-md-2 cont" id="enemyCharArea">
-				<!-- Empty until enemy character is selected -->
-				<div class = "health">HP: </div>
+			<div hidden class = "col-md-2 cont" id="enemyCharArea">
+				<!-- Empty and hidden until enemy character is selected -->
+				<div class = "health" id = "enemyHealth">HP: </div>
 			</div>
 			<div class = "col-md-3">
 			</div>

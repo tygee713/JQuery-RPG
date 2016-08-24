@@ -1,37 +1,36 @@
 
 
-			console.log("Game has started");
-
 		var characterPicked;
 		var enemyPicked;
 		var enemyBattling = false;
-
-		$(".attack").hide();
-		$("#playerCharArea").hide();
-		$("#enemyCharArea").hide();
+		var playerWon;
+		var enemies = [];
 
 		var ryu = {
 			name: "ryu",
-			health: 150,
-			attack: 10,
-			counterAttack: 10,
+			health: 120,
+			attack: 5,
+			baseAttack: 5,
+			counterAttack: 12,
 			iconPath: "assets/images/RyuSelect.jpg",
 			charSpritePath: "assets/images/sprites/Ryu.gif",
 			enemySpritePath: "assets/images/sprites/Ryu2.gif"
 		}
 		var ken = {
 			name: "ken",
-			health: 100,
-			attack: 15,
-			counterAttack: 15,
+			health: 80,
+			attack: 9,
+			baseAttack: 9,
+			counterAttack: 13,
 			iconPath: "assets/images/KenSelect.jpg",
 			charSpritePath: "assets/images/sprites/Ken.gif",
 			enemySpritePath: "assets/images/sprites/Ken2.gif"
 		}
 		var chunli = {
 			name: "chunli",
-			health: 50,
-			attack: 5,
+			health: 54,
+			attack: 16,
+			baseAttack: 16,
 			counterAttack: 20,
 			iconPath: "assets/images/ChunSelect.jpg",
 			charSpritePath: "assets/images/sprites/ChunLi.gif",
@@ -40,8 +39,9 @@
 		var mbison = {
 			name: "mbison",
 			health: 200,
-			attack: 5,
-			counterAttack: 5,
+			attack: 2,
+			baseAttack: 2,
+			counterAttack: 11,
 			iconPath: "assets/images/BisonSelect.jpg",
 			charSpritePath: "assets/images/sprites/Bison.gif",
 			enemySpritePath: "assets/images/sprites/Bison2.gif"
@@ -50,30 +50,85 @@
 		var characters = [ryu, ken, chunli, mbison];
 
 		$(".playerCharPick").on("click", function() {
-			characterPicked = $(this).data("obj");
-			$("#playerCharArea").append('<img src="'+ eval(characterPicked).charSpritePath + '" class="image" data-obj="' + characterPicked + '">');
+			characterPicked = eval($(this).data("obj"));
+			$("#playerCharArea").append('<img src="'+ characterPicked.charSpritePath + '" class="image" data-obj="' + characterPicked.name + '">');
 			$("#playerCharArea").show();
+			// $("#playerHealth").html("HP: " + characterPicked.health);
+			updatePlayerHealth();
 			$("#playerCharSelection").empty();
 			for (i=0;i<characters.length;i++) {
-				if (characters[i].name !== eval(characterPicked).name) {
+				if (characters[i].name !== characterPicked.name) {
 					$("#enemyCharSelection").append('<div class = "col-md-3 cont"><img src="' + characters[i].iconPath + '" class="enemyCharPick" data-obj="' + characters[i].name + '"></div>');
 				}
-				console.log("iteration" + i);
 			}
 
 		});
 
 		$("#enemyCharSelection").on("click", ".enemyCharPick", function() {
 			if (!enemyBattling) {
-				enemyPicked = $(this).data("obj");
-				$("#enemyCharArea").append('<img src="'+ eval(enemyPicked).enemySpritePath + '" class="image" data-obj="' + enemyPicked + '">');
+				enemyPicked = eval($(this).data("obj"));
+				console.log("Enemy Battling:" + enemyBattling);
+				console.log(enemyPicked);
+				$("#enemyCharArea").append('<img src="'+ enemyPicked.enemySpritePath + '" class="image" id="enemyChar" data-obj="' + enemyPicked.name + '">');
 				$("#enemyCharArea").show();
-				$(".attack").show();
+				// $("#enemyHealth").html("HP: " + enemyPicked.health);
+				console.log(enemyPicked.health);
+				updateEnemyHealth();
+				$("#attack").show();
 				$(this).hide();
+				enemies.push(enemyPicked);
 				enemyBattling = true;
+			}
+		});
+
+		$(".attack").on("click", function() {
+			console.log(characterPicked.attack);
+			// Player attacks enemy, enemy loses health equal to player attk
+			// Player attack increases by base amount
+			// If enemy is not dead, enemy counter attacks, player loses health equal to enemy counter attk
+			if (enemyBattling == true) {
+
+				enemyPicked.health -= characterPicked.attack;
+				characterPicked.attack += characterPicked.baseAttack;
+				updateEnemyHealth();
+
+				if (enemyPicked.health <= 0) { //Checks to see if enemy has been defeated
+					$("#enemyChar").remove();
+					$("#enemyHealth").html("");
+					enemyBattling = false;
+					if (enemies.length == 3) { //Once all 3 enemies have been fought
+						var enemyLiving = false;
+						for (i=0; i<enemies.length;i++) {
+							if (enemies[i].health > 0) {
+								enemyLiving = true;
+							}
+						}
+						if (enemyLiving == false) { //Once all 3 enemies have 0 health
+							playerWon = true;
+							$("#result").html("Player 1 Wins!");
+							$(".attack").hide();
+						}
+					}
+				}
+
+				else {
+					characterPicked.health -= enemyPicked.counterAttack;
+					updatePlayerHealth();
+				}
+			}
+			else {
+				alert("Please select another enemy");
 			}
 		});
 
 $(".newGame").on("click", function() {
 	location.reload();
 })
+
+function updatePlayerHealth() {
+	$("#playerHealth").html("HP: " + characterPicked.health);
+}
+function updateEnemyHealth() {
+	console.log("Showing " + enemyPicked.name + "'s health");
+	$("#enemyHealth").html("HP: " + enemyPicked.health);
+}
